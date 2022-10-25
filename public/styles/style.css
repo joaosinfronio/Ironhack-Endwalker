@@ -1,14 +1,5 @@
-@import 'bootstrap';
-
-$font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$grey: hsl(0, 0, 90%);
-
-* {
-  &,
-  &:before,
-  &:after {
-    box-sizing: border-box;
-  }
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
 body {
@@ -16,7 +7,7 @@ body {
   padding: 0 1em;
   margin: 0 auto;
   font-family: sans-serif;
-  font-family: $font-sans;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 2;
 }
 
@@ -27,17 +18,22 @@ a {
 
 nav {
   display: flex;
-  a,
-  button {
-    padding: 1em 0;
-    border: 0;
-    &:not(:last-child) {
-      margin-right: 1em;
-    }
-    &:first-child {
-      margin-right: auto;
-    }
-  }
+}
+
+nav a,
+nav button {
+  padding: 1em 0;
+  border: 0;
+}
+
+nav a:not(:last-child),
+nav button:not(:last-child) {
+  margin-right: 1em;
+}
+
+nav a:first-child,
+nav button:first-child {
+  margin-right: auto;
 }
 
 h1,
@@ -46,9 +42,13 @@ h3,
 p {
   margin: 0;
   line-height: inherit;
-  &:not(:last-child) {
-    margin-bottom: 1rem;
-  }
+}
+
+h1:not(:last-child),
+h2:not(:last-child),
+h3:not(:last-child),
+p:not(:last-child) {
+  margin-bottom: 1rem;
 }
 
 img {
@@ -69,7 +69,7 @@ select,
 button,
 .btn {
   padding: 1em;
-  border: 1px solid $grey;
+  border: 1px solid #e6e6e6;
   border-radius: 0;
   margin-bottom: 1em;
   font: inherit;
@@ -85,3 +85,5 @@ textarea {
 label {
   margin-bottom: 0.5em;
 }
+
+/*# sourceMappingURL=style.css.map */
