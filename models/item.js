@@ -10,3 +10,7 @@ const dataSchema = new mongoose.Schema({
   levelItem: number,
   name: String
 });
+
+const Data = mongoose.model('Data', dataSchema);
+
+module.exports = Data;
