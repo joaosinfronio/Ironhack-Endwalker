@@ -9,6 +9,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@xivapi/js": "^0.4.1",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^4.6.0",
     "debug": "^4.3.4",

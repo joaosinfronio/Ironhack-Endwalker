@@ -2,22 +2,40 @@
 
 const mongoose = require('mongoose');
 
-const schema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true
+const userSchema = new mongoose.Schema(
+  {
+    fullName: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    email: {
+      type: String,
+      required: true
+    },
+    inGameName: {
+      type: String
+    },
+    worldServer: {
+      type: String
+    },
+    nationality: {
+      type: String
+    },
+    profilePicture: {
+      type: String
+    },
+    passwordHashandSalt: {
+      type: String,
+      required: true,
+      minlength: 8
+    }
   },
-  email: {
-    type: String,
-    required: true,
-    lowercase: true,
-    trim: true
-  },
-  passwordHashAndSalt: {
-    type: String
+  {
+    timestamps: true
   }
-});
+);
 
-const User = mongoose.model('User', schema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
