@@ -15,8 +15,10 @@ router.get('/private', routeGuard, (req, res, next) => {
 });
 
 router.get('/search', (req, res, next) => {
-  xiv.search('potion', { columns: LevelItem }).then((results) => {
+  xiv.search('potion').then((resultsDocument) => {
+    const results = resultsDocument.Results;
     console.log(results);
+    res.render('search', { results: results });
   });
 });
 
