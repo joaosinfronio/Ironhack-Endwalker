@@ -7,7 +7,9 @@ const XIVAPI = require('@xivapi/js');
 const xiv = new XIVAPI();
 
 router.get('/', (req, res, next) => {
-  res.render('home', { title: 'Hello World!' });
+  res.render('home', {
+    title: 'Welcome to the No. 1 FFXIV community in IronHack!'
+  });
 });
 
 router.get('/private', routeGuard, (req, res, next) => {
