@@ -1,14 +1,66 @@
-<form action="/authentication/sign-up" method="POST">
-  <label for="input-name">Name</label>
-  <input type="text" id="input-name" name="name" placeholder="Your Name" />
-  <label for="input-email">Email</label>
-  <input type="email" id="input-email" name="email" placeholder="Your Email" />
-  <label for="input-password">Password</label>
-  <input
-    type="password"
-    name="password"
-    id="input-password"
-    placeholder="A Strong Password"
-  />
-  <button>Sign Up</button>
-</form>
+<div class="d-flex justify-content-center align-items-center w-100">
+  <div class="p-4 w-50">
+    <ul class="fs-2 list-unstyled">
+      <li class="p-3">- Find other Final Fantasy XIV players</li>
+      <li class="p-3">- Favourite your sought after items</li>
+      <li class="p-3">- Meet new friends to party up</li>
+    </ul>
+  </div>
+  <div class="p-4 w-25">
+    <form>
+      <div class="mb-3">
+        <div class="mb-3">
+          <label for="input-name">Full Name
+          </label>
+          <input
+            type="input-name"
+            class="form-control"
+            id="input-name"
+            aria-describedby="fullName"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="input-email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="input-email"
+            aria-describedby="emailHelp"
+          />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+        />
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {{! <form action="/authentication/sign-up" method="POST">
+      <label for="input-name">Name</label>
+      <input type="text" id="input-name" name="name" placeholder="Your Name" />
+      <label for="input-email">Email</label>
+      <input
+        type="email"
+        id="input-email"
+        name="email"
+        placeholder="Your Email"
+      />
+      <label for="input-password">Password</label>
+      <input
+        type="password"
+        name="password"
+        id="input-password"
+        placeholder="A Strong Password"
+      />
+      <button>Sign Up</button>
+    </form> }}
+  </div>
+</div>
