@@ -15,7 +15,8 @@ router.get('/private', routeGuard, (req, res, next) => {
 });
 
 router.get('/search', (req, res, next) => {
-  xiv.search('potion').then((resultsDocument) => {
+  let searchTerm = req.query.search;
+  xiv.search(searchTerm).then((resultsDocument) => {
     const results = resultsDocument.Results;
     console.log(results);
     res.render('search', { results: results });

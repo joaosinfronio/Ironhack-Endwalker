@@ -12,10 +12,13 @@ const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const serveFavicon = require('serve-favicon');
 const mongoose = require('mongoose');
+const hbs = require('hbs');
 const authenticationDeserializer = require('./middleware/authentication-deserializer.js');
 const baseRouter = require('./routes/base');
 const profileRouter = require('./routes/profile');
 const authenticationRouter = require('./routes/authentication');
+
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 const app = express();
 

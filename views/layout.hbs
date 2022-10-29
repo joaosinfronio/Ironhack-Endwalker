@@ -9,49 +9,7 @@
     <link rel="stylesheet" href="/styles/style.css" />
   </head>
   <body>
-    <div class="hero-image"></div>
-    <nav class="navbar navbar-expand-lg bg-light fixed-top p-1 opacity-75">
-      <div class="container-fluid">
-        <a class="navbar-brand me-2 p-0" href="/">Eorzea</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarText"
-          aria-controls="navbarText"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/presets">Presets</a>
-            </li>
-          </ul>
-          {{#if user}}
-            <form action="/private">
-              <span class="navbar-text">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary me-5"
-                >{{user.name}}'s Profile</button>
-              </span>
-            </form>
-            <form action="/authentication/sign-out" method="POST">
-              <button class="btn btn-primary">Sign Out</button>
-            </form>
-          {{else}}
-            <a href="/authentication/sign-in">Sign In</a>
-            <a href="/authentication/sign-up">Sign Up</a>
-          {{/if}}
-        </div>
-      </div>
-    </nav>
+    {{>navbar}} 
     <div class="mt-5 pt-5">
       {{{body}}}
     </div>
