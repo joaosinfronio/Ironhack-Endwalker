@@ -6,7 +6,7 @@
     </ul>
   </div>
   <div class="p-4 me-4 col-6 col-sm-8 col-xl-6">
-    <form>
+    <form action="/authentication/sign-up" method="POST">
       <div class="mb-3">
         <div class="mb-3">
           <label for="input-name">Full Name
@@ -29,11 +29,12 @@
         </div>
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <label for="input-password" class="form-label">Password</label>
         <input
           type="password"
           class="form-control"
-          id="exampleInputPassword1"
+          id="input-password"
+          aria-describedby="passwordForm"
         />
       </div>
       <div class="mb-3 form-check">
