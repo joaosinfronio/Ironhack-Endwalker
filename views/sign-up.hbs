@@ -8,30 +8,63 @@
   <div class="p-4 me-4 col-6 col-sm-8 col-xl-4">
     <form action="/authentication/sign-up" method="POST">
       <div class="mb-3">
-        <div class="mb-3">
-          <label for="input-name">Full Name
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            id="input-name"
-            aria-describedby="fullName"
-            name="fullName"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="input-email" class="form-label">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="input-email"
-            aria-describedby="emailHelp"
-            name="email"
-          />
-        </div>
+        <label for="input-name">Full Name:<span style="color: red;">*</span>
+        </label>
+        <input
+          type="text"
+          class="form-control"
+          id="input-name"
+          aria-describedby="fullName"
+          name="fullName"
+        />
       </div>
       <div class="mb-3">
-        <label for="input-password" class="form-label">Password</label>
+        <label for="input-email" class="form-label">Email address:<span
+            style="color: red;"
+          >*</span></label>
+        <input
+          type="email"
+          class="form-control"
+          id="input-email"
+          aria-describedby="emailHelp"
+          name="email"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="input-inGameName" class="form-label">In-Game Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="input-inGameName"
+          aria-describedby="inGameName"
+          name="inGameName"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="input-worldServer" class="form-label">Your Character's World
+          Server:</label>
+        <input
+          type="dropdown"
+          class="form-control"
+          id="input-worldServer"
+          aria-describedby="worldServer"
+          name="worldServer"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="input-nationality" class="form-label">Your Nationality:</label>
+        <input
+          type="dropdown"
+          class="form-control"
+          id="input-nationality"
+          aria-describedby="nationality"
+          name="nationality"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="input-password" class="form-label">Password:<span
+            style="color: red;"
+          >*</span></label>
         <input
           type="password"
           class="form-control"
