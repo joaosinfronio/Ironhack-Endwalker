@@ -25,7 +25,7 @@ const userSchema = new mongoose.Schema(
     profilePicture: {
       type: String
     },
-    passwordHashandSalt: {
+    passwordHashAndSalt: {
       type: String,
       required: true,
       minlength: 8
