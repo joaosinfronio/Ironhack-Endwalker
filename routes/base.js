@@ -18,11 +18,17 @@ router.get('/private', routeGuard, (req, res, next) => {
 
 router.get('/search', (req, res, next) => {
   let searchTerm = req.query.search;
-  xiv.search(searchTerm).then((resultsDocument) => {
-    const results = resultsDocument.Results;
-    console.log(results);
-    res.render('search', { results: results });
-  });
+  xiv
+    .search(searchTerm, {
+      indexes: 'item,achievement,instantcontent',
+      columns: 'ID,Name,Icon,LevelItem,LevelEquip,ItemSearchCategory.Name',
+      filters: 'LevelItem>100'
+    })
+    .then((resultsDocument) => {
+      const results = resultsDocument.Results;
+      console.log(results);
+      res.render('search', { results: results });
+    });
 });
 
 module.exports = router;
