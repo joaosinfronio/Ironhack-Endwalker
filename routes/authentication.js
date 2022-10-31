@@ -6,9 +6,11 @@ const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
 
 const router = new Router();
+const countries = require('./../views/datasets/countries');
+const worldServers = require('./../views/datasets/worldservers');
 
 router.get('/sign-up', (req, res, next) => {
-  res.render('sign-up');
+  res.render('sign-up', { countries, worldServers });
 });
 
 router.post('/sign-up', (req, res, next) => {
