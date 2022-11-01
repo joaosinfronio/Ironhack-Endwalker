@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 const dataSchema = new mongoose.Schema({
-  externalID: String,
+  externalId: String,
   icon: String,
   itemSearchCategory: { name: String },
   levelEquip: number,
