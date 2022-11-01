@@ -18,28 +18,18 @@ router.get('/sign-up', (req, res, next) => {
 });
 
 router.post('/sign-up', (req, res, next) => {
-  const {
-    fullName,
-    email,
-    password,
-    inGameName,
-    worldServer,
-    nationality,
-    characterId
-  } = req.body;
+  const { fullName, email, password, inGameName, worldServer, nationality } =
+    req.body;
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
-      const lookedUpCharacter = lookUpCharacter(inGameName, worldServer);
-      console.log(lookedUpCharacter);
       return User.create({
         fullName,
         email,
         inGameName,
         worldServer,
         nationality,
-        passwordHashAndSalt: hash,
-        characterId
+        passwordHashAndSalt: hash
       });
     })
     .then((user) => {
