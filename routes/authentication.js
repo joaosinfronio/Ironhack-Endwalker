@@ -22,10 +22,13 @@ router.get('/sign-up', (req, res, next) => {
 router.post('/sign-up', (req, res, next) => {
   const { fullName, email, password, inGameName, worldServer, nationality } =
     req.body;
-  const lookedUpCharacter = lookUpCharacter(inGameName, worldServer);
-  console.log(lookedUpCharacter);
-  bcryptjs
-    .hash(password, 10)
+  let characterId;
+  lookUpCharacter(inGameName, worldServer)
+    .then((user) => {
+      console.log(user);
+      characterId = user.externalId;
+      return bcryptjs.hash(password, 10);
+    })
     .then((hash) => {
       return User.create({
         fullName,
@@ -33,7 +36,8 @@ router.post('/sign-up', (req, res, next) => {
         inGameName,
         worldServer,
         nationality,
-        passwordHashAndSalt: hash
+        passwordHashAndSalt: hash,
+        characterId: characterId
       });
     })
     .then((user) => {
