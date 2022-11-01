@@ -13,7 +13,7 @@ const gearSlot = {
 
 const characterSchema = new mongoose.Schema(
   {
-    externalId: String,
+    externalId: Number,
     name: String,
     server: String,
     gear: {

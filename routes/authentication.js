@@ -12,6 +12,8 @@ const worldServers = require('./../views/datasets/worldservers');
 const getCharacter = require('./../lib/load-character');
 const lookUpCharacter = getCharacter.lookUpCharacter;
 const loadCharacter = getCharacter.loadCharacter;
+const loadCharacterFromAPIAndCacheIt =
+  getCharacter.loadCharacterFromAPIAndCacheIt;
 
 router.get('/sign-up', (req, res, next) => {
   res.render('sign-up', { countries, worldServers });
@@ -20,6 +22,8 @@ router.get('/sign-up', (req, res, next) => {
 router.post('/sign-up', (req, res, next) => {
   const { fullName, email, password, inGameName, worldServer, nationality } =
     req.body;
+  const lookedUpCharacter = lookUpCharacter(inGameName, worldServer);
+  console.log(lookedUpCharacter);
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
