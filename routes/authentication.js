@@ -9,24 +9,35 @@ const router = new Router();
 const countries = require('./../views/datasets/countries');
 const worldServers = require('./../views/datasets/worldservers');
 
+const getCharacter = require('./../lib/load-character');
+const lookUpCharacter = getCharacter.lookUpCharacter;
+const loadCharacter = getCharacter.loadCharacter;
+
 router.get('/sign-up', (req, res, next) => {
   res.render('sign-up', { countries, worldServers });
 });
 
 router.post('/sign-up', (req, res, next) => {
-  const { fullName, email, password } = req.body;
+  const { fullName, email, password, inGameName, worldServer, nationality } =
+    req.body;
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
+      const lookedUpCharacter = lookUpCharacter(inGameName, worldServer);
+      console.log(lookedUpCharacter);
       return User.create({
         fullName,
         email,
-        passwordHashAndSalt: hash
+        inGameName,
+        worldServer,
+        nationality,
+        passwordHashAndSalt: hash,
+        characterId
       });
     })
     .then((user) => {
       req.session.userId = user._id;
-      res.redirect('/private');
+      res.redirect('/profile');
     })
     .catch((error) => {
       next(error);

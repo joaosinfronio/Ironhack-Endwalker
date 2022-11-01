@@ -6,8 +6,8 @@ const dataSchema = new mongoose.Schema({
   externalId: String,
   icon: String,
   itemSearchCategory: { name: String },
-  levelEquip: number,
-  levelItem: number,
+  levelEquip: Number,
+  levelItem: Number,
   name: String
 });
 
