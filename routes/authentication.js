@@ -18,8 +18,15 @@ router.get('/sign-up', (req, res, next) => {
 });
 
 router.post('/sign-up', (req, res, next) => {
-  const { fullName, email, password, inGameName, worldServer, nationality } =
-    req.body;
+  const {
+    fullName,
+    email,
+    password,
+    inGameName,
+    worldServer,
+    nationality,
+    characterId
+  } = req.body;
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
