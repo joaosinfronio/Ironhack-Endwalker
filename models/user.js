@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 8
     },
-    characterId: Number
+    characterId: String
   },
   {
     timestamps: true

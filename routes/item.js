@@ -21,19 +21,4 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-router.get('/search', (req, res, next) => {
-  let searchTerm = req.query.search;
-  xiv
-    .search(searchTerm, {
-      indexes: 'item,achievement,instantcontent',
-      columns: 'ID,Name,Icon,LevelItem,LevelEquip,ItemSearchCategory.Name'
-      // filters: 'LevelItem>100'
-    }) //TODO: recieve an object with indexes and filters
-    .then((resultsDocument) => {
-      const results = resultsDocument.Results;
-      console.log(results);
-      res.render('search', { results: results });
-    });
-});
-
 module.exports = router;

@@ -25,6 +25,7 @@ router.post('/sign-up', (req, res, next) => {
   lookUpCharacter(inGameName, worldServer)
     .then((user) => {
       characterId = user.externalId;
+
       return bcryptjs.hash(password, 10);
     })
     .then((hash) => {
