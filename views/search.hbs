@@ -1,5 +1,8 @@
 <ul>
-  {{#each dataResultDocuments}}
-    <li>{{externalId}}</li>
+  {{#each results}}
+    <a href="/item/{{ID}}">
+      <li>{{Name}}</li>
+    </a>
+
   {{/each}}
 </ul>

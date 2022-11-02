@@ -17,6 +17,7 @@ const authenticationDeserializer = require('./middleware/authentication-deserial
 const baseRouter = require('./routes/base');
 const profileRouter = require('./routes/profile');
 const authenticationRouter = require('./routes/authentication');
+const itemRouter = require('./routes/item');
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
@@ -61,6 +62,7 @@ app.use(authenticationDeserializer);
 app.use('/', baseRouter);
 app.use('/profile', profileRouter);
 app.use('/authentication', authenticationRouter);
+app.use('/item', itemRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
