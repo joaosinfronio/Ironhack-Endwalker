@@ -12,8 +12,6 @@ const worldServers = require('./../views/datasets/worldservers');
 const getCharacter = require('./../lib/load-character');
 const lookUpCharacter = getCharacter.lookUpCharacter;
 const loadCharacter = getCharacter.loadCharacter;
-const loadCharacterFromAPIAndCacheIt =
-  getCharacter.loadCharacterFromAPIAndCacheIt;
 
 router.get('/sign-up', (req, res, next) => {
   res.render('sign-up', { countries, worldServers });
