@@ -84,6 +84,7 @@ mongoose
   .connect(MONGODB_URI)
   .then(() => {
     console.log(`Database connected to URI "${MONGODB_URI}"`);
+    mongoose.connection.dropDatabase();
     app
       .listen(Number(PORT), () => {
         console.log(`Server listening to requests on port ${PORT}`);

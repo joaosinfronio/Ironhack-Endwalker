@@ -20,12 +20,9 @@ router.get('/private', routeGuard, (req, res, next) => {
 
 router.get('/search', (req, res, next) => {
   let searchTerm = req.query.search;
-  searchForItems(searchTerm, 0);
-  Data.find({ Name: { $regex: searchTerm, $options: 'i' } }).then(
-    (dataResultDocuments) => {
-      res.render('search', { results: dataResultDocuments });
-    }
-  );
+  searchForItems(searchTerm, 0).then((dataResultDocuments) => {
+    res.render('search', { results: dataResultDocuments });
+  });
 });
 
 module.exports = router;

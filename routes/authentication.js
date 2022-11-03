@@ -4,14 +4,13 @@ const { Router } = require('express');
 
 const bcryptjs = require('bcryptjs');
 const User = require('./../models/user');
+const Character = require('./../models/character');
 
 const router = new Router();
 const countries = require('./../views/datasets/countries');
 const worldServers = require('./../views/datasets/worldservers');
 
-const getCharacter = require('./../lib/load-character');
-const lookUpCharacter = getCharacter.lookUpCharacter;
-const loadCharacter = getCharacter.loadCharacter;
+const lookUpCharacter = require('./../lib/load-character');
 
 router.get('/sign-up', (req, res, next) => {
   res.render('sign-up', { countries, worldServers });
@@ -21,11 +20,13 @@ router.post('/sign-up', (req, res, next) => {
   const { fullName, email, password, inGameName, worldServer, nationality } =
     req.body;
   let characterId;
+  let user;
+  let character;
 
   lookUpCharacter(inGameName, worldServer)
-    .then((user) => {
-      characterId = user.externalId;
-
+    .then((characterDocument) => {
+      character = characterDocument;
+      characterId = character.externalId;
       return bcryptjs.hash(password, 10);
     })
     .then((hash) => {
@@ -39,11 +40,15 @@ router.post('/sign-up', (req, res, next) => {
         characterId: characterId
       });
     })
-    .then((user) => {
+    .then((userDocument) => {
+      user = userDocument;
       req.session.userId = user._id;
-      res.redirect('/profile');
+    })
+    .then(() => {
+      res.render('profile', { character, user });
     })
     .catch((error) => {
+      console.log(error);
       next(error);
     });
 });
