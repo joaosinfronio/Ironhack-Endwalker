@@ -4,11 +4,12 @@ const mongoose = require('mongoose');
 
 const dataSchema = new mongoose.Schema({
   externalId: String,
-  icon: String,
-  itemSearchCategory: { name: String },
-  levelEquip: Number,
-  levelItem: Number,
-  name: String
+  Icon: String,
+  ItemSearchCategory: { name: String },
+  LevelEquip: Number,
+  LevelItem: Number,
+  Name: String,
+  Rarity: Number
 });
 
 const Data = mongoose.model('Data', dataSchema);

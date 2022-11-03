@@ -1,7 +1,12 @@
 <ul>
   {{#each results}}
-    <a href="/item/{{ID}}">
-      <li>{{externalId}}</li>
+    <a href="/item/{{externalId}}">
+      <li>ID: {{externalId}} </li>
+      <li>NAME::{{Name}} </li>
+      <li>LevelItem::{{LevelItem}} </li>
+      <li>LevelEquip::{{LevelEquip}} </li>
+      <li>Rarity::{{Rarity}} </li>
+
     </a>
     <img
       style="height:50px; width:50px;"

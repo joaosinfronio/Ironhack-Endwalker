@@ -17,7 +17,7 @@ router.get('/', routeGuard, (req, res, next) => {
       return Character.findOne({ externalId: user.characterId });
     })
     .then((character) => {
-      console.log(user, '', character);
+      // console.log(user, '', character);
       res.render('profile', { user, character });
     })
     .catch((error) => next(error));
