@@ -12,8 +12,14 @@ $grey: hsl(0, 0, 90%);
 }
 
 body {
+  background: linear-gradient(
+    135deg,
+    rgba(86, 0, 113, 1) 0%,
+    rgba(128, 40, 153, 1) 100%
+  );
   padding: 0 1em;
   margin: 0 auto;
+  color: white;
   font-family: sans-serif;
   font-family: $font-sans;
   line-height: 2;

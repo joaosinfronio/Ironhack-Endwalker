@@ -11333,8 +11333,10 @@ textarea.form-control-lg {
 }
 
 body {
+  background: linear-gradient(135deg, #560071 0%, #802899 100%);
   padding: 0 1em;
   margin: 0 auto;
+  color: white;
   font-family: sans-serif;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 2;

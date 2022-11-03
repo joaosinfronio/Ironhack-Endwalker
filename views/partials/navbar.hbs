@@ -1,6 +1,6 @@
-<nav class="d-flex navbar navbar-expand-lg bg-light fixed-top p-1 opacity-75">
+<nav class="d-flex navbar navbar-expand-lg bg-dark fixed-top p-1 opacity-100">
   <div class="container-fluid">
-    <a class="navbar-brand ms-3 me-3" href="/">Eorzea</a>
+    <a class="text-white navbar-brand ms-3 me-3" href="/">Eorzea</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -15,10 +15,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mb-2 me-auto mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/">Home</a>
+          <a class="nav-link link-light" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/presets">Community</a>
+          <a class="nav-link text-white" href="/presets">Community</a>
         </li>
       </ul>
       <form
@@ -27,14 +27,14 @@
         role="search"
       >
         <input
-          class="form-control me-2 align-items-center"
+          class="text-dark form-control me-2 align-items-center"
           type="search"
           placeholder="Search for anything..."
           aria-label="Search"
           name="search"
         />
         <button
-          class="btn btn-success align-items-center me-0 mb-0"
+          class="btn btn-outline-light align-items-center me-0 mb-0"
           type="submit"
         ><svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@
         <form action="/private" class="align-items-center mb-0">
           <button
             type="button"
-            class="btn btn-outline-secondary me-3"
+            class="btn btn-outline-light me-3"
           >{{user.fullName}}'s Profile</button>
         </form>
         <form
@@ -61,11 +61,14 @@
           action="/authentication/sign-out"
           method="POST"
         >
-          <button class="btn btn-primary me-3 mb-0">Sign Out</button>
+          <button class="btn btn-dark me-3 mb-0">Sign Out</button>
         </form>
       {{else}}
-        <a class="btn btn-outline-dark" href="/authentication/sign-in">Log In</a>
-        <a class="btn btn-dark me-3" href="/authentication/sign-up">Sign Up</a>
+        <a class="btn btn-dark" href="/authentication/sign-in">Log In</a>
+        <a
+          class="btn btn-outline-light btn-dark me-3"
+          href="/authentication/sign-up"
+        >Sign Up</a>
       {{/if}}
     </div>
   </div>
