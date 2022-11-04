@@ -1,18 +1,20 @@
-<div class="d-flex justify-content-center align-items-center w-100 h-75">
+<div class="d-flex justify-content-center align-items-center w-100 h-75 mt-2">
   <div class="p-4 col-6 col-sm-4 col-xl-6">
     <ul class="fs-2 list-unstyled">
-      <li class="p-3">- Find other Final Fantasy XIV players</li>
-      <li class="p-3">- Favourite your sought after items</li>
+      <li class="p-3">Find other Final Fantasy XIV players</li>
+      <li class="p-3">Favourite your sought after items</li>
     </ul>
   </div>
-  <div class="p-4 me-4 col-6 col-sm-8 col-xl-4 mt-5">
+  <div
+    class="shadow-sm input-sign-up border border-light bg-light rounded p-4 me-4 col-6 col-sm-8 col-xl-4 mt-5"
+  >
     <form action="/authentication/sign-up" method="POST">
       <div class="mb-3">
         <label for="input-name">Full Name:<span style="color: red;">*</span>
         </label>
         <input
           type="text"
-          class="form-control"
+          class="shadow-sm form-control"
           id="input-name"
           aria-describedby="fullName"
           name="fullName"
@@ -24,7 +26,7 @@
           >*</span></label>
         <input
           type="email"
-          class="form-control"
+          class="shadow-sm form-control"
           id="input-email"
           aria-describedby="emailHelp"
           name="email"
@@ -34,7 +36,7 @@
         <label for="input-inGameName" class="form-label">In-Game Name:</label>
         <input
           type="text"
-          class="form-control"
+          class="shadow-sm form-control"
           id="input-inGameName"
           aria-describedby="inGameName"
           name="inGameName"
@@ -44,7 +46,7 @@
         <label for="input-worldServer" class="form-label">Your Character's World
           Server:</label>
         <select
-          class="form-control"
+          class="shadow-sm form-control"
           id="input-worldServer"
           aria-describedby="worldServer"
           name="worldServer"
@@ -57,7 +59,7 @@
       <div class="mb-3">
         <label for="input-nationality" class="form-label">Your Nationality:</label>
         <select
-          class="form-control"
+          class="shadow-sm form-control"
           id="input-nationality"
           aria-describedby="nationality"
           name="nationality"
@@ -74,13 +76,13 @@
           >*</span></label>
         <input
           type="password"
-          class="form-control"
+          class="shadow-sm form-control"
           id="input-password"
           aria-describedby="passwordForm"
           name="password"
         />
       </div>
-      <button type="submit" class="mt-3 btn btn-dark">Submit</button>
+      <button type="submit" class="shadow-sm mt-3 btn btn-dark">Submit</button>
     </form>
   </div>
 </div>
