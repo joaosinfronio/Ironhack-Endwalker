@@ -43,10 +43,19 @@ router.post('/sign-up', (req, res, next) => {
     .then((userDocument) => {
       user = userDocument;
       req.session.userId = user._id;
-      return character
+      return Character.findOne({ externalId: characterId })
         .populate('gear.Body.item')
         .populate('gear.Earrings.item')
-        .populate('gear.Bracelets.item');
+        .populate('gear.Bracelets.item')
+        .populate('gear.Feet.item')
+        .populate('gear.Hands.item')
+        .populate('gear.Head.item')
+        .populate('gear.Legs.item')
+        .populate('gear.MainHand.item')
+        .populate('gear.Necklace.item')
+        .populate('gear.Ring1.item')
+        .populate('gear.Ring2.item')
+        .populate('gear.SoulCrystal.item');
     })
     .then((character) => {
       res.render('profile', { character, user });

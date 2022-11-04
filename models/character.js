@@ -19,7 +19,16 @@ const characterSchema = new mongoose.Schema(
     gear: {
       Body: gearSlot,
       Bracelets: gearSlot,
-      Earrings: gearSlot
+      Earrings: gearSlot,
+      Feet: gearSlot,
+      Hands: gearSlot,
+      Head: gearSlot,
+      Legs: gearSlot,
+      MainHand: gearSlot,
+      Necklace: gearSlot,
+      Ring1: gearSlot,
+      Ring2: gearSlot,
+      SoulCrystal: gearSlot
     }
   },
   { timestamps: true }
