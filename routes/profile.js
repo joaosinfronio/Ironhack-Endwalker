@@ -14,10 +14,15 @@ router.get('/', routeGuard, (req, res, next) => {
   User.findById(req.user._id)
     .then((userDocument) => {
       user = userDocument;
-      return Character.findOne({ externalId: user.characterId });
+      return Character.findOne({
+        externalId: user.characterId
+      })
+        .populate('gear.Body.item')
+        .populate('gear.Earrings.item')
+        .populate('gear.Bracelets.item');
     })
     .then((character) => {
-      // console.log(user, '', character);
+      console.log('Character', character);
       res.render('profile', { user, character });
     })
     .catch((error) => next(error));

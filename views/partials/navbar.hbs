@@ -50,11 +50,8 @@
           </svg></button>
       </form>
       {{#if user}}
-        <form action="/private" class="align-items-center mb-0">
-          <button
-            type="button"
-            class="btn btn-outline-light me-3"
-          >{{user.fullName}}'s Profile</button>
+        <form action="/profile" class="align-items-center mb-0">
+          <button class="btn btn-outline-light me-3">{{user.fullName}}'s Profile</button>
         </form>
         <form
           class="align-items-center mb-0"
