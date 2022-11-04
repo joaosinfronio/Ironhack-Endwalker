@@ -19,10 +19,19 @@ router.get('/', routeGuard, (req, res, next) => {
       })
         .populate('gear.Body.item')
         .populate('gear.Earrings.item')
-        .populate('gear.Bracelets.item');
+        .populate('gear.Bracelets.item')
+        .populate('gear.Feet.item')
+        .populate('gear.Hands.item')
+        .populate('gear.Head.item')
+        .populate('gear.Legs.item')
+        .populate('gear.MainHand.item')
+        .populate('gear.Necklace.item')
+        .populate('gear.Ring1.item')
+        .populate('gear.Ring2.item')
+        .populate('gear.SoulCrystal.item');
     })
     .then((character) => {
-      console.log('Character', character);
+      console.log('Character', character.gear);
       res.render('profile', { user, character });
     })
     .catch((error) => next(error));

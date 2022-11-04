@@ -8,11 +8,22 @@
 
 <h2>image</h2>
 
-<h2>Gear</h2>
-<h3>Head</h3>
+{{#each character.gear}}
+  <h3>{{@key}}:{{this}}</h3>
+{{/each}}
+
+{{!-- 
+<h2>Gear:</h2>
+<h3>Head:{{character.gear.Head}}</h3>
 <h3>Earrings: {{character.gear.Earrings}}</h3>
 <h3>Body: {{character.gear.Body}}</h3>
 <h3>Bracelets: {{character.gear.Bracelets}}</h3>
-<h3>Arms</h3>
-<h3>Legs</h3>
-<h3>Feet</h3>
+
+<h3>Legs:{{character.gear.Legs}}</h3>
+<h3>Feet:{{character.gear.Feet}}</h3>
+<h3>Hands:{{character.gear.Hands}}</h3>
+<h3>MainHead:{{character.gear.MainHead}}</h3>
+<h3>Necklace:{{character.gear.Necklace}}</h3>
+<h3>Ring1:{{character.gear.Ring1}}</h3>
+<h3>Ring2:{{character.gear.Ring2}}</h3>
+<h3>SoulCrystal:{{character.gear.SoulCrystal}}</h3> --}}

@@ -27,6 +27,7 @@ router.post('/sign-up', (req, res, next) => {
     .then((characterDocument) => {
       character = characterDocument;
       characterId = character.externalId;
+
       return bcryptjs.hash(password, 10);
     })
     .then((hash) => {
