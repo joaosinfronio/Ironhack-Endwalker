@@ -43,8 +43,12 @@ router.post('/sign-up', (req, res, next) => {
     .then((userDocument) => {
       user = userDocument;
       req.session.userId = user._id;
+      return character
+        .populate('gear.Body.item')
+        .populate('gear.Earrings.item')
+        .populate('gear.Bracelets.item');
     })
-    .then(() => {
+    .then((character) => {
       res.render('profile', { character, user });
     })
     .catch((error) => {
