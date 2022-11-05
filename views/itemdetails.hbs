@@ -1,6 +1,9 @@
 <div class="d-flex justify-content-center">
   <div class="col col-lg-4 mb-3">
-        <h2 class="shadow character-details border border-dark rounded-3 ps-3 mb-2" style="font-family:Georgia, Times New Roman">{{data.Name}}</h2>
+    <h2
+      class="shadow character-details border border-dark rounded-3 ps-3 mb-2"
+      style="font-family:Georgia, Times New Roman"
+    >{{data.Name}}</h2>
     <img
       class="border border-2 border-dark rounded-5 shadow"
       src="https://xivapi.com/{{data.IconHD}}"
@@ -8,15 +11,45 @@
     />
   </div>
   <div class="ps-3 col col-lg-8 mb-0">
-    <h3 style="font-family:Georgia, Times New Roman" class="mb-2 shadow character-details border border-dark rounded ps-3"><i>Item Type: </i></h3><h4 class="p-1 shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{data.ItemKind.Name}} </h4>
-    <h3 style="font-family:Georgia, Times New Roman" class="mb-2 shadow character-details border border-dark rounded ps-3"><i>Level Equip: </i></h3><h4 class="p-1 shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{data.LevelEquip}} </h4>
-    <h3 style="font-family:Georgia, Times New Roman" class="mb-2 shadow character-details border border-dark rounded ps-3"><i>Level Item: </i></h3><h4 class="p-1 shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{data.LevelItem}} </h4>
-    <h3 style="font-family:Georgia, Times New Roman" class="mb-2 shadow character-details border border-dark rounded ps-3"><i>Rarity: </i></h3><h4 class="p-1 shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{data.Rarity}} </h4>
-    <h3 style="font-family:Georgia, Times New Roman" class="mb-2 shadow character-details border border-dark rounded ps-3"><i>Description: </i></h3><h3 class="p-1 shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{{data.Description}}} </h4>
+    <h3
+      style="font-family:Georgia, Times New Roman"
+      class="mb-2 shadow character-details border border-dark rounded ps-3"
+    ><i>Item Type: </i></h3><h4
+      class="p-1 shadow character-details border border-dark rounded ps-3"
+      style="font-family:Georgia, Times New Roman"
+    >{{data.ItemKind.Name}} </h4>
+    <h3
+      style="font-family:Georgia, Times New Roman"
+      class="mb-2 shadow character-details border border-dark rounded ps-3"
+    ><i>Level Equip: </i></h3><h4
+      class="p-1 shadow character-details border border-dark rounded ps-3"
+      style="font-family:Georgia, Times New Roman"
+    >{{data.LevelEquip}} </h4>
+    <h3
+      style="font-family:Georgia, Times New Roman"
+      class="mb-2 shadow character-details border border-dark rounded ps-3"
+    ><i>Level Item: </i></h3><h4
+      class="p-1 shadow character-details border border-dark rounded ps-3"
+      style="font-family:Georgia, Times New Roman"
+    >{{data.LevelItem}} </h4>
+    <h3
+      style="font-family:Georgia, Times New Roman"
+      class="mb-2 shadow character-details border border-dark rounded ps-3"
+    ><i>Rarity: </i></h3><h4
+      class="p-1 shadow character-details border border-dark rounded ps-3"
+      style="font-family:Georgia, Times New Roman"
+    >{{data.Rarity}} </h4>
+    <h3
+      style="font-family:Georgia, Times New Roman"
+      class="mb-2 shadow character-details border border-dark rounded ps-3"
+    ><i>Description: </i></h3><h4
+      class="p-1 shadow character-details border border-dark rounded ps-3 pt-4 pb-4"
+      style="font-family:Georgia, Times New Roman"
+    >{{{data.Description}}} </h4>
   </div>
 </div>
 
-<hr class="mt-5">
+<hr class="mt-5" />
 
 {{#if comment}}
   {{#each comment}}
