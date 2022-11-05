@@ -17,11 +17,16 @@ router.get('/sign-up', (req, res, next) => {
 });
 
 router.post('/sign-up', (req, res, next) => {
-  const { fullName, email, password, inGameName, worldServer, nationality } =
-    req.body;
+  const { fullName, email, password, worldServer, nationality } = req.body;
+  let inGameName = req.body.inGameName;
   let characterId;
   let user;
   let character;
+  // set inGameName to empty string if no value is provided
+
+  if (inGameName === '') {
+    inGameName = 'Nonexistum Namus';
+  }
 
   lookUpCharacter(inGameName, worldServer)
     .then((characterDocument) => {
