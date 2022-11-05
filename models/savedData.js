@@ -2,14 +2,14 @@
 
 const mongoose = require('mongoose');
 
-const followSchema = new mongoose.Schema(
+const savedDataSchema = new mongoose.Schema(
   {
-    follower: {
+    item: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: 'User'
+      ref: 'Data'
     },
-    followee: {
+    user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: 'User'
@@ -20,6 +20,6 @@ const followSchema = new mongoose.Schema(
   }
 );
 
-const Follow = mongoose.model('Follow', followSchema);
+const SavedData = mongoose.model('savedData', savedDataSchema);
 
-module.exports = Follow;
+module.exports = SavedData;

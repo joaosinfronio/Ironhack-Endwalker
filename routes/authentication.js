@@ -59,6 +59,7 @@ router.post('/sign-up', (req, res, next) => {
         .populate('gear.SoulCrystal.item');
     })
     .then((character) => {
+      console.log(character.gear);
       res.render('profile', { character, user });
     })
     .catch((error) => {
@@ -86,7 +87,7 @@ router.post('/sign-in', (req, res, next) => {
     .then((result) => {
       if (result) {
         req.session.userId = user._id;
-        res.redirect('/private');
+        res.redirect('/profile');
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }

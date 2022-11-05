@@ -14,15 +14,13 @@ router.get('/', (req, res, next) => {
   });
 });
 
-router.get('/private', routeGuard, (req, res, next) => {
-  res.render('private');
-});
-
 router.get('/search', (req, res, next) => {
   let searchTerm = req.query.search;
-  searchForItems(searchTerm, 0).then((dataResultDocuments) => {
-    res.render('search', { results: dataResultDocuments });
-  });
+  searchForItems(searchTerm, 0)
+    .then((dataResultDocuments) => {
+      res.render('search', { results: dataResultDocuments });
+    })
+    .catch((error) => next(error));
 });
 
 module.exports = router;

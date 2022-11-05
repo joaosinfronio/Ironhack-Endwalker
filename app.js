@@ -18,6 +18,7 @@ const baseRouter = require('./routes/base');
 const profileRouter = require('./routes/profile');
 const authenticationRouter = require('./routes/authentication');
 const itemRouter = require('./routes/item');
+const commentRouter = require('./routes/comment');
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
@@ -63,6 +64,7 @@ app.use('/', baseRouter);
 app.use('/profile', profileRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/item', itemRouter);
+app.use('/comment', commentRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
@@ -84,7 +86,7 @@ mongoose
   .connect(MONGODB_URI)
   .then(() => {
     console.log(`Database connected to URI "${MONGODB_URI}"`);
-    // mongoose.connection.dropDatabase();
+    mongoose.connection.dropDatabase();
     app
       .listen(Number(PORT), () => {
         console.log(`Server listening to requests on port ${PORT}`);

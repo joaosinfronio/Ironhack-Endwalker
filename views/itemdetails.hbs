@@ -1,2 +1,10 @@
 <h1>Item Details</h1>
-<h2>Name : {{item.Name}}</h2>
+<h2>Name : {{data.Name}}</h2>
+<img src="https://xivapi.com/{{data.Icon}}" alt="Icon of {{data.Name}}" />
+<h3>ID :{{data.externalId}} </h3>
+<h3>Kind Of Item :{{data.ItemKind.Name}} </h3>
+<h3>Search Category :{{data.ItemSearchCategory.Name}} </h3>
+<h3>Level Equip :{{data.LevelEquip}} </h3>
+<h3>Level Item :{{data.LevelItem}} </h3>
+<h3>Rarity :{{data.Rarity}} </h3>
+<h3>Description :{{data.Description}} </h3>
