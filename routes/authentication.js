@@ -45,6 +45,7 @@ router.post('/sign-up', (req, res, next) => {
       user = userDocument;
       req.session.userId = user._id;
       return Character.findOne({ externalId: characterId })
+        .populate('portrait')
         .populate('gear.Body.item')
         .populate('gear.Earrings.item')
         .populate('gear.Bracelets.item')
@@ -59,7 +60,6 @@ router.post('/sign-up', (req, res, next) => {
         .populate('gear.SoulCrystal.item');
     })
     .then((character) => {
-      console.log(character.gear);
       res.render('profile', { character, user });
     })
     .catch((error) => {

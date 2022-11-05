@@ -15,6 +15,7 @@ const characterSchema = new mongoose.Schema(
   {
     externalId: String,
     name: String,
+    portrait: String,
     server: String,
     gear: {
       Body: gearSlot,

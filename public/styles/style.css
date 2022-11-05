@@ -11408,14 +11408,6 @@ li {
   cursor: pointer;
 }
 
-.item-link {
-  color: #e6e6e6;
-}
-
-.item-link:hover {
-  color: white;
-}
-
 .item-card {
   transition: transform 0.2s;
   /* Animation */
@@ -11423,6 +11415,10 @@ li {
 
 .item-card:hover {
   transform: scale(1.02);
+}
+
+.character-details {
+  background-color: #49364c;
 }
 
 /*# sourceMappingURL=style.css.map */

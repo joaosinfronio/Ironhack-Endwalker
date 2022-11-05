@@ -18,6 +18,7 @@ router.get('/', routeGuard, (req, res, next) => {
       return Character.findOne({
         externalId: user.characterId
       })
+        .populate('portrait')
         .populate('gear.Body.item')
         .populate('gear.Earrings.item')
         .populate('gear.Bracelets.item')
@@ -32,7 +33,7 @@ router.get('/', routeGuard, (req, res, next) => {
         .populate('gear.SoulCrystal.item');
     })
     .then((character) => {
-      console.log('Character', character.gear);
+      console.log('Character', character.Portrait);
       res.render('profile', { user, character });
     })
     .catch((error) => next(error));
@@ -48,6 +49,7 @@ router.get('/:id', routeGuard, (req, res, next) => {
       return Character.findOne({
         externalId: user.characterId
       })
+        .populate('portrait')
         .populate('gear.Body.item')
         .populate('gear.Earrings.item')
         .populate('gear.Bracelets.item')

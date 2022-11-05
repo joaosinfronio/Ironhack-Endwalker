@@ -82,17 +82,14 @@ li {
   cursor: pointer;
 }
 
-.item-link {
-  color: $grey;
-  &:hover {
-    color: white;
-  }
-}
-
 .item-card {
   transition: transform 0.2s; /* Animation */
 }
 
 .item-card:hover {
   transform: scale(1.02);
+}
+
+.character-details {
+  background-color: rgb(73, 54, 76);
 }
