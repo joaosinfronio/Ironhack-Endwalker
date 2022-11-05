@@ -1,11 +1,15 @@
 <div
   class="p-5 input-log-in d-flex justify-content-center align-items-center h-75"
 >
-  <h1 class="me-5 text-light">Log in now to access your account!</h1>
+  <h1 class="me-5 text-light">Sign in now to access your account!</h1>
   <div
-    class="shadow-sm ms-5 d-flex flex-col p-5 me-4 border border-light border-3 bg-light rounded"
+    class="shadow ms-5 d-flex flex-col p-5 me-4 border border-light border-3 bg-light rounded"
   >
-    <form class="mb-0" action="/authentication/sign-in" method="POST">
+    <form
+      class="needs-validation mb-0"
+      action="/authentication/sign-in"
+      method="POST"
+    >
       <label
         class="form-label align-items-center me-3"
         for="input-email"
@@ -15,7 +19,7 @@
         type="email"
         id="input-email"
         name="email"
-        placeholder="Your Email"
+        placeholder=""
         required
       />
       <label
@@ -27,7 +31,7 @@
         type="password"
         name="password"
         id="input-password"
-        placeholder="A Strong Password"
+        placeholder=""
         required
       />
       <button class="shadow-sm btn btn-primary mt-3">Sign In</button>
