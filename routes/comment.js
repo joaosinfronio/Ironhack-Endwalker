@@ -8,7 +8,7 @@ const xiv = new XIVAPI();
 const Comment = require('./../models/comment');
 
 //Post a comment on an item recieves de item _id
-router.post('/:id', routeGuard, (req, res, next) => {
+router.post('/item/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
   const { message } = req.body;
 
@@ -19,6 +19,34 @@ router.post('/:id', routeGuard, (req, res, next) => {
   })
     .then(() => {
       res.redirect('/item/' + id);
+    })
+    .catch((error) => next(error));
+});
+
+router.post('/profile/:id', routeGuard, (req, res, next) => {
+  const { id } = req.params;
+  const { message } = req.body;
+
+  Comment.create({
+    message,
+    author: req.user._id,
+    profile: id
+  })
+    .then(() => {
+      res.redirect('/item/' + id);
+    })
+    .catch((error) => next(error));
+});
+
+router.post('/:id/edit', routeGuard, (req, res, next) => {
+  const { id } = req.params;
+  const { message } = req.body;
+
+  Comment.findByIdAndUpdate(id, {
+    message
+  })
+    .then(() => {
+      res.redirect('/profile/' + id);
     })
     .catch((error) => next(error));
 });

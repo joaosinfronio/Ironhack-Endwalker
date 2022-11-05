@@ -7,13 +7,21 @@ const XIVAPI = require('@xivapi/js');
 const Data = require('../models/data');
 const SavedData = require('../models/savedData');
 const xiv = new XIVAPI();
+const Comment = require('./../models/comment');
 
 //Get the detailed information about the Item, Recieves a external id
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
-  Data.findOne({ externalId: id })
-    .then((data) => {
-      res.render('itemdetails', { data });
+  let data;
+
+  Data.findById(id)
+    .then((dataDocument) => {
+      data = dataDocument;
+      console.log(data);
+      return Comment.find({ item: data._id });
+    })
+    .then((comment) => {
+      res.render('itemdetails', { data, comment });
     })
     .catch((error) => next(error));
 });

@@ -1,20 +1,17 @@
-<div class="col">
+<div class="shadow col">
   <div class="card h-100">
     <img
-      src="https://xivapi.com/{{Icon}}"
-      class="card-img-top"
-      style="max-width:70px; margin: 0 auto"
+      src="https://xivapi.com/{{IconHD}}"
+      class="shadow-sm card-img-top mb-3 mt-3 ms-auto me-auto w-25"
       alt="Icon for {{Name}}"
     />
-    <div class="card-body">
+    <div class="card-body p-1 m-2">
       <h5 class="card-title">{{Name}}</h5>
-      <h6>ID::{{externalId}}</h6>
-      <h6>Kind::{{ItemKind.Name}} </h6>
-      <p class="card-text">{{Description}}</p>
-      {{Description}}
+      <h6>{{ItemKind.Name}} </h6>
+      <p class="card-text">{{{Description}}}</p>
     </div>
     <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago OR LAST COMMENT ADDED</small>
+      <small class="text-muted">Last updated 3 mins ago</small>
     </div>
   </div>
 </div>

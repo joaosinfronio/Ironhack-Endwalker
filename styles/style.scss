@@ -14,8 +14,8 @@ $grey: hsl(0, 0, 90%);
 body {
   background: linear-gradient(
     135deg,
-    rgba(86, 0, 113, 1) 0%,
-    rgba(128, 40, 153, 1) 100%
+    rgb(76, 0, 99) 0%,
+    rgb(141, 51, 166) 100%
   );
   padding: 0 1em;
   margin: 0 auto;
@@ -77,4 +77,8 @@ label {
 
 .input-sign-up {
   color: black;
+}
+
+li {
+  cursor: pointer;
 }

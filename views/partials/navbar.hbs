@@ -1,4 +1,6 @@
-<nav class="d-flex navbar navbar-expand-lg bg-dark fixed-top p-1 opacity-100">
+<nav
+  class="shadow-sm d-flex navbar navbar-expand-lg bg-dark fixed-top p-1 opacity-100"
+>
   <div class="navbar-dark container-fluid">
     <a class="text-white navbar-brand ms-3 me-3" href="/">Eorzea</a>
     <button
@@ -27,14 +29,14 @@
         role="search"
       >
         <input
-          class="text-dark form-control me-2 align-items-center"
+          class="shadow-sm text-dark form-control me-2 align-items-center"
           type="search"
           placeholder="Search for items..."
           aria-label="Search"
           name="search"
         />
         <button
-          class="btn btn-outline-light align-items-center me-0 mb-0"
+          class="shadow-sm btn btn-outline-light align-items-center me-0 mb-0"
           type="submit"
         ><svg
             xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +53,9 @@
       </form>
       {{#if user}}
         <form action="/profile" class="align-items-center mb-0">
-          <button class="btn btn-outline-light me-3">{{user.fullName}}'s Profile</button>
+          <button
+            class="shadow-sm btn btn-outline-light me-3"
+          >{{user.fullName}}'s Profile</button>
         </form>
         <form
           class="align-items-center mb-0"

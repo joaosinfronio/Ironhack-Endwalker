@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const dataSchema = new mongoose.Schema(
   {
     externalId: String,
-    Icon: String,
+    IconHD: String,
     ItemSearchCategory: { Name: String },
     LevelEquip: Number,
     LevelItem: Number,
