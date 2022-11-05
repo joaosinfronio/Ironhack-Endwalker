@@ -18,7 +18,7 @@ router.get('/search', (req, res, next) => {
   let searchTerm = req.query.search;
   searchForItems(searchTerm, 0)
     .then((dataResultDocuments) => {
-      res.render('search', { results: dataResultDocuments });
+      res.render('search', { results: dataResultDocuments, searchTerm });
     })
     .catch((error) => next(error));
 });
