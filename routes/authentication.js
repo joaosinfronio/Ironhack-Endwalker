@@ -22,7 +22,6 @@ router.post('/sign-up', (req, res, next) => {
   let characterId;
   let user;
   let character;
-  // don't lookUpCharacter is inGameName is empty
 
   lookUpCharacter(inGameName, worldServer)
     .then((characterDocument) => {

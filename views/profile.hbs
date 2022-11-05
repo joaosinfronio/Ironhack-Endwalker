@@ -7,11 +7,11 @@
 <h2>characterName: {{character.name}}</h2>
 
 <h2>image</h2>
-
-{{#each character.gear}}
-  <h3>{{@key}}</h3>
-  {{> gear}}
-{{/each}}
+<div class="row row-cols-1 row-cols-md-6 mb-3 g-4">
+  {{#each character.gear}}
+        {{> gear}}
+  {{/each}}
+</div>
 
 {{!-- 
 <h2>Gear:</h2>

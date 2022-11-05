@@ -1,9 +1,8 @@
-<div class="col shadow-sm">
+{{!-- <div class="col shadow-sm">
   <div class="shadow card h-100">
     <img
       src="https://xivapi.com/{{item.IconHD}}"
-      class="card-img-top shadow-sm"
-      style="max-width:70px; margin: 0 auto"
+      class="shadow-sm card-img-top mb-3 mt-3 ms-auto me-auto w-25 border border-1 border-dark rounded"
       alt="Icon for {{item.Name}}"
     />
     <div class="card-body">
@@ -13,7 +12,32 @@
       {{item.Description}}
     </div>
     <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago OR LAST COMMENT ADDED</small>
+      <small class="text-muted">Last updated a few seconds ago</small>
+    </div>
+  </div>
+</div> --}}
+
+<div class="shadow-sm col">
+  <div class="shadow card h-100">
+    {{#each character.gear}}
+      <h3>{{@key}}</h3>
+    {{/each}}
+    <img
+      src="https://xivapi.com/{{item.IconHD}}"
+      class="shadow-sm card-img-top mb-3 mt-3 ms-auto me-auto w-25 border border-1 border-dark rounded"
+      alt="Icon for {{item.Name}}"
+    />
+    <div class="card-body p-1 m-2">
+      <h5
+        class="card-title"
+        style="font-family:Georgia, Times New Roman"
+      >{{item.Name}}</h5>
+      {{!-- <h6>{{item.externalId}} </h6> --}}
+      <p class="card-text" style="font-family:Georgia, Times New Roman">Rarity:
+        {{item.Rarity}}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Updated a few seconds ago</small>
     </div>
   </div>
 </div>
