@@ -26,7 +26,6 @@ body {
 }
 
 a {
-  color: inherit;
   text-decoration: none;
 }
 
@@ -81,4 +80,19 @@ label {
 
 li {
   cursor: pointer;
+}
+
+.item-link {
+  color: $grey;
+  &:hover {
+    color: white;
+  }
+}
+
+.item-card {
+  transition: transform 0.2s; /* Animation */
+}
+
+.item-card:hover {
+  transform: scale(1.02);
 }

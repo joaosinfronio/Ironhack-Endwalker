@@ -22,11 +22,7 @@ router.post('/sign-up', (req, res, next) => {
   let characterId;
   let user;
   let character;
-  // set inGameName to empty string if no value is provided
-
-  if (inGameName === '') {
-    inGameName = 'Nonexistum Namus';
-  }
+  // don't lookUpCharacter is inGameName is empty
 
   lookUpCharacter(inGameName, worldServer)
     .then((characterDocument) => {
