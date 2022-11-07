@@ -27,6 +27,17 @@ const commentSchema = new mongoose.Schema(
   }
 );
 
+commentSchema.methods.getAddedInfo = function (userId) {
+  const comment = this;
+  const isOwned = userId
+    ? String(userId) === String(comment.author._id)
+    : false;
+  return {
+    ...comment.toJSON(),
+    isOwned
+  };
+};
+
 const Comment = mongoose.model('Comment', commentSchema);
 
 module.exports = Comment;

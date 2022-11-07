@@ -7,6 +7,12 @@ const XIVAPI = require('@xivapi/js');
 const xiv = new XIVAPI();
 const Comment = require('./../models/comment');
 
+//Get Commnews for a specific item
+router.get('/item/:id', (req, res, next) => {
+  const { id } = req.params;
+  Comment.find({ item: id }).then((comment) => {});
+});
+
 //Post a comment on an item recieves de item _id
 router.post('/item/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
@@ -23,6 +29,10 @@ router.post('/item/:id', routeGuard, (req, res, next) => {
     .catch((error) => next(error));
 });
 
+//GET comments
+router.get('/profile/:id', (req, res, next) => {});
+
+//Post a comment on an profile recieves de profile _id
 router.post('/profile/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
   const { message } = req.body;
@@ -33,7 +43,7 @@ router.post('/profile/:id', routeGuard, (req, res, next) => {
     profile: id
   })
     .then(() => {
-      res.redirect('/item/' + id);
+      res.redirect('/');
     })
     .catch((error) => next(error));
 });

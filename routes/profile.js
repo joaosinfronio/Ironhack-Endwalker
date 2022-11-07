@@ -8,10 +8,12 @@ const xiv = new XIVAPI();
 const User = require('./../models/user');
 const Character = require('./../models/character');
 const Follow = require('./../models/follow');
+const Comment = require('./../models/comment');
 
 //GET User's profile
 router.get('/', routeGuard, (req, res, next) => {
   let user;
+  let character;
   User.findById(req.user._id)
     .then((userDocument) => {
       user = userDocument;
@@ -32,11 +34,23 @@ router.get('/', routeGuard, (req, res, next) => {
         .populate('gear.Ring2.item')
         .populate('gear.SoulCrystal.item');
     })
-    .then((character) => {
-      console.log('Character', character.Portrait);
-      res.render('profile', { user, character });
+    .then((characterDocument) => {
+      character = characterDocument;
+      return Comment.find({ profile: user._id });
     })
+    .then((comment) => {
+      res.render('profile', { user, character, comment });
+    })
+
     .catch((error) => next(error));
+});
+
+router.get('/edit', routeGuard, (req, res, next) => {
+  res.render('profile-edit', { profile: req.user });
+});
+
+router.post('/edit', routeGuard, (req, res, next) => {
+  res.render('profile-edit', { profile: req.user });
 });
 
 //GET another users profile
