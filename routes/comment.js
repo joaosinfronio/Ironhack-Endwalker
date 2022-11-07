@@ -43,7 +43,7 @@ router.post('/profile/:id', routeGuard, (req, res, next) => {
     profile: id
   })
     .then(() => {
-      res.redirect('/');
+      res.redirect('/profile');
     })
     .catch((error) => next(error));
 });
