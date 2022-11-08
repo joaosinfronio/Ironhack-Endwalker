@@ -11421,4 +11421,12 @@ li {
   background-color: #49364c;
 }
 
+.profile-img {
+  width: 36px;
+}
+
+.comment-avatar {
+  width: 8%;
+}
+
 /*# sourceMappingURL=style.css.map */
