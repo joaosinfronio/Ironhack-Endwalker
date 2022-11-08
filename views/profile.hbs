@@ -30,9 +30,14 @@
 
       {{#if comment}}
         {{#each comment}}
-          <img src="{{@root.user.avatar}}" alt="">
-          <h1>{{author.inGameName}}</h1>
-          <p>{{message}}</p>
+          <div class="d-flex">
+          <img class="comment-avatar border border-2 border-dark rounded shadow" src="{{@root.user.avatar}}" alt="">
+          <h3 class="ms-3 mb-0 mt-0 p-0">{{author.inGameName}}</h3>
+        </div>
+        <div class="mt-3">
+          <p class="">{{message}}</p>
+        </div>
+        <hr>
         {{/each}}
       {{else}}
         <h1>No comment here!</h1>
