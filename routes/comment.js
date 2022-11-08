@@ -6,6 +6,7 @@ const routeGuard = require('./../middleware/route-guard');
 const XIVAPI = require('@xivapi/js');
 const xiv = new XIVAPI();
 const Comment = require('./../models/comment');
+const Data = require('../models/data');
 
 //Get Commnews for a specific item
 router.get('/item/:id', (req, res, next) => {
@@ -17,13 +18,22 @@ router.get('/item/:id', (req, res, next) => {
 router.post('/item/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
   const { message } = req.body;
+  let comment;
 
   Comment.create({
     message,
     author: req.user._id,
     item: id
   })
-    .then(() => {
+    .then((commentDocument) => {
+      comment = commentDocument;
+      return Data.findByIdAndUpdate(
+        id,
+        { LastComment: comment._id },
+        { new: true }
+      );
+    })
+    .then((data) => {
       res.redirect('/item/' + id);
     })
     .catch((error) => next(error));

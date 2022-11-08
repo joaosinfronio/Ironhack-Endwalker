@@ -12,7 +12,8 @@ const dataSchema = new mongoose.Schema(
     Name: String,
     Rarity: Number,
     ItemKind: { Name: String },
-    Description: String
+    Description: String,
+    LastComment: { type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }
   },
   { timestamp: true }
 );

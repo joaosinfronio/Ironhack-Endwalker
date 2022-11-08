@@ -15,7 +15,16 @@
         >{{{Description}}}</i></p>
     </div>
     <div class="card-footer">
-      <small class="text-muted">Last updated a few seconds ago</small>
+      {{#if LastComment}}
+
+        <small class="text-muted">{{LastComment.author.inGameName}}</small>
+        <small class="text-muted">{{LastComment.message}}</small>
+
+      {{else}}
+        <small class="text-muted">No Comment</small>
+
+      {{/if}}
+
     </div>
   </div>
 </div>

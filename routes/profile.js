@@ -36,7 +36,7 @@ router.get('/', routeGuard, (req, res, next) => {
     })
     .then((characterDocument) => {
       character = characterDocument;
-      return Comment.find({ profile: user._id });
+      return Comment.find({ profile: user._id }).populate('author');
     })
     .then((comment) => {
       res.render('profile', { user, character, comment });

@@ -30,9 +30,8 @@
 
       {{#if comment}}
         {{#each comment}}
-          <h1>{{author}}</h1>
+          <h1>{{author.inGameName}}</h1>
           <p>{{message}}</p>
-          <hr>
         {{/each}}
       {{else}}
         <h1>No comment here!</h1>
@@ -46,6 +45,9 @@
         placeholder="Comment message here..."
         name="message"
       ></textarea>
+        {{#if isOwn}}
+          <a href="/profile/{{_id}}/edit" class="btn btn-primary">Edit</a>
+        {{/if}}
 
       <button class="btn btn-dark">Add Comment</button>
     </form>
