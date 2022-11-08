@@ -22,15 +22,14 @@ const userSchema = new mongoose.Schema(
     nationality: {
       type: String
     },
-    profilePicture: {
-      type: String
-    },
+
     passwordHashAndSalt: {
       type: String,
       required: true,
       minlength: 8
     },
-    characterId: String
+    characterId: String,
+    avatar: String
   },
   {
     timestamps: true

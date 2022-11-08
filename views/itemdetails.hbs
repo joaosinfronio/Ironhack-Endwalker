@@ -61,7 +61,8 @@
 
       {{#if comment}}
         {{#each comment}}
-          <h1>{{author}}</h1>
+          <img src="{{@root.user.avatar}}" alt="">
+          <h1>{{author.inGameName}}</h1>
           <p>{{message}}</p>
           <hr>
         {{/each}}
@@ -69,16 +70,18 @@
         <h1>No comment here!</h1>
       {{/if}}
     </div> 
-  <div class="ps-3 col-sm col-md-4 col-xl-4 h-25">
-    <form class="shadow p-3 card form-control" method="POST" action="/comment/item/{{data._id}}">
-      <textarea
-      class="rounded mb-3"
-        id="input-message"
-        placeholder="Comment message here..."
-        name="message"
-      ></textarea>
+  {{#if user}}
+    <div class="ps-3 col-sm col-md-4 col-xl-4 h-25">
+      <form class="shadow p-3 card form-control" method="POST" action="/comment/item/{{data._id}}">
+        <textarea
+        class="rounded mb-3"
+          id="input-message"
+          placeholder="Comment message here..."
+          name="message"
+        ></textarea>
 
-      <button class="btn btn-dark">Add Comment</button>
-    </form>
-  </div>
+        <button class="btn btn-dark">Add Comment</button>
+      </form>
+    </div>
+  {{/if}}
 </div>

@@ -1,12 +1,21 @@
   <h1 class="mt-0 mb-0" style="font-family:Georgia, Times New Roman">Results for: {{searchTerm}}</h1>
   <hr class="mt-0">
 <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
-  {{#each results}}
-    <a class="item-link link-light" href="/item/{{_id}}">
-    {{> item}}
-    </a>
+  {{#if profile}}
+    {{#each profile}}
+      <a class="item-link link-light" href="/profile/{{_id}}">
+      {{> profile}}
+      </a>
 
-  {{/each}}
-  
-  
+    {{/each}}
+  {{else}}
+    {{#each item}}
+      <a class="item-link link-light" href="/item/{{_id}}">
+      {{> item}}
+      </a>
+    {{/each}}
+
+  {{/if}}
+
+
 </div>

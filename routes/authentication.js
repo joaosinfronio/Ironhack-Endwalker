@@ -38,7 +38,8 @@ router.post('/sign-up', (req, res, next) => {
         worldServer,
         nationality,
         passwordHashAndSalt: hash,
-        characterId: characterId
+        characterId: characterId,
+        avatar: character.avatar
       });
     })
     .then((userDocument) => {

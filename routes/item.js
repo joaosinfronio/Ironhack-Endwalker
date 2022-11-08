@@ -8,6 +8,7 @@ const Data = require('../models/data');
 const SavedData = require('../models/savedData');
 const xiv = new XIVAPI();
 const Comment = require('./../models/comment');
+const Character = require('../models/character');
 
 //Get the detailed information about the Item, Recieves a external id
 router.get('/:id', (req, res, next) => {
@@ -18,7 +19,7 @@ router.get('/:id', (req, res, next) => {
     .then((dataDocument) => {
       data = dataDocument;
       console.log(data);
-      return Comment.find({ item: data._id });
+      return Comment.find({ item: data._id }).populate('author');
     })
     .then((comment) => {
       res.render('itemdetails', { data, comment });
@@ -28,7 +29,7 @@ router.get('/:id', (req, res, next) => {
 
 //Post save an item
 //TODO: create a function to add field savedItem in the item so we can chang the button to save and unsave
-router.post('/:id/save', (req, res, next) => {
+router.post('/:id/save', routeGuard, (req, res, next) => {
   const { id } = req.params;
   SavedData.create({
     item: id,
@@ -41,7 +42,7 @@ router.post('/:id/save', (req, res, next) => {
 });
 
 //Delete/Unsave an item
-router.post('/:id/unsave', (req, res, next) => {
+router.post('/:id/unsave', routeGuard, (req, res, next) => {
   const { id } = req.params;
   SavedData.findOneAndDelete({
     item: id,

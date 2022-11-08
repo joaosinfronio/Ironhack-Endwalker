@@ -30,7 +30,8 @@ const characterSchema = new mongoose.Schema(
       Ring1: gearSlot,
       Ring2: gearSlot,
       SoulCrystal: gearSlot
-    }
+    },
+    avatar: String
   },
   { timestamps: true }
 );

@@ -1,0 +1,30 @@
+<div class="item-card shadow col">
+  <div class="card h-100">
+    <img
+      src="{{avatar}}"
+      class="shadow-sm card-img-top mb-3 mt-3 ms-auto me-auto w-25 border border-1 border-dark rounded"
+      alt="Icon for {{inGameName}}"
+    />
+    <div class="card-body p-1 m-2">
+      <h5
+        style="font-family:Georgia, Times New Roman"
+        class="card-title"
+      >{{inGameName}}</h5>
+      <h6 style="font-family:Georgia, Times New Roman">{{worldServer}} </h6>
+      <p style="font-family:Georgia, Times New Roman" class="card-text"><i
+        >{{{nationality}}}</i></p>
+    </div>
+    {{!-- <div class="card-footer">
+      {{#if LastComment}}
+
+        <small class="text-muted">{{LastComment.author.inGameName}}</small>
+        <small class="text-muted">{{LastComment.message}}</small>
+
+      {{else}}
+        <small class="text-muted">No Comment</small>
+
+      {{/if}}
+
+    </div> --}}
+  </div>
+</div>

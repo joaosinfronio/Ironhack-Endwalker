@@ -54,9 +54,10 @@
       </form>
       {{#if user}}
         <form action="/profile" class="align-items-center mb-0">
-          <button
-            class="shadow-sm btn btn-outline-light me-3"
-          >{{user.fullName}}'s Profile</button>
+          <button class="shadow-sm btn btn-outline-light me-3"><img
+              src="{{user.avatar}}"
+              alt=""
+            />{{user.fullName}}'s Profile</button>
         </form>
         <form
           class="align-items-center mb-0"

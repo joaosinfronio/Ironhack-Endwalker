@@ -54,7 +54,7 @@ router.post('/edit', routeGuard, (req, res, next) => {
 });
 
 //GET another users profile
-router.get('/:id', routeGuard, (req, res, next) => {
+router.get('/:id', (req, res, next) => {
   let user;
   const { id } = req.params;
   User.findById(id)
