@@ -45,7 +45,8 @@
     </div> 
   {{#if user}}
     <div class="ps-3 col-sm col-md-4 col-xl-4 h-25">
-      <form class="shadow p-3 card form-control" method="POST" action="/comment/profile/{{user._id}}">
+     
+      <form class="shadow p-3 card form-control" method="POST" action="/comment/profile/{{userId}}">
         <textarea
         class="rounded mb-3"
           id="input-message"

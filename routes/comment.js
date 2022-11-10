@@ -47,12 +47,13 @@ router.post('/profile/:id', routeGuard, (req, res, next) => {
   const { id } = req.params;
   const { message } = req.body;
 
-  Comment.create({
+  return Comment.create({
     message,
     author: req.user._id,
     profile: id
   })
-    .then(() => {
+    .then((comment) => {
+      console.log(comment);
       res.redirect('/profile/' + id);
     })
     .catch((error) => next(error));

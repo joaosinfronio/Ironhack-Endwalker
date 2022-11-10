@@ -14,7 +14,54 @@ const Comment = require('./../models/comment');
 router.get('/', routeGuard, (req, res, next) => {
   let user;
   let character;
+  let userId;
   User.findById(req.user._id)
+    .then((userDocument) => {
+      user = userDocument;
+      userId = user._id;
+      return Character.findOne({
+        externalId: user.characterId
+      })
+        .populate('portrait')
+        .populate('gear.Body.item')
+        .populate('gear.Earrings.item')
+        .populate('gear.Bracelets.item')
+        .populate('gear.Feet.item')
+        .populate('gear.Hands.item')
+        .populate('gear.Head.item')
+        .populate('gear.Legs.item')
+        .populate('gear.MainHand.item')
+        .populate('gear.Necklace.item')
+        .populate('gear.Ring1.item')
+        .populate('gear.Ring2.item')
+        .populate('gear.SoulCrystal.item');
+    })
+    .then((characterDocument) => {
+      character = characterDocument;
+      return Comment.find({ profile: user._id }).populate('author');
+    })
+    .then((comment) => {
+      res.render('profile', { user, character, comment, userId });
+    })
+    .catch((error) => next(error));
+});
+
+router.get('/edit', routeGuard, (req, res, next) => {
+  res.render('profile-edit', { profile: req.user });
+});
+
+router.post('/edit', routeGuard, (req, res, next) => {
+  res.render('profile-edit', { profile: req.user });
+});
+
+//GET another users profile
+router.get('/:id', (req, res, next) => {
+  let user, character;
+  const { id } = req.params;
+  const userId = id;
+
+  console.log('THIS IS USER ID', userId);
+  User.findById(userId)
     .then((userDocument) => {
       user = userDocument;
       return Character.findOne({
@@ -39,47 +86,7 @@ router.get('/', routeGuard, (req, res, next) => {
       return Comment.find({ profile: user._id }).populate('author');
     })
     .then((comment) => {
-      res.render('profile', { user, character, comment });
-    })
-
-    .catch((error) => next(error));
-});
-
-router.get('/edit', routeGuard, (req, res, next) => {
-  res.render('profile-edit', { profile: req.user });
-});
-
-router.post('/edit', routeGuard, (req, res, next) => {
-  res.render('profile-edit', { profile: req.user });
-});
-
-//GET another users profile
-router.get('/:id', (req, res, next) => {
-  let user;
-  const { id } = req.params;
-  User.findById(id)
-    .then((userDocument) => {
-      user = userDocument;
-      return Character.findOne({
-        externalId: user.characterId
-      })
-        .populate('portrait')
-        .populate('gear.Body.item')
-        .populate('gear.Earrings.item')
-        .populate('gear.Bracelets.item')
-        .populate('gear.Feet.item')
-        .populate('gear.Hands.item')
-        .populate('gear.Head.item')
-        .populate('gear.Legs.item')
-        .populate('gear.MainHand.item')
-        .populate('gear.Necklace.item')
-        .populate('gear.Ring1.item')
-        .populate('gear.Ring2.item')
-        .populate('gear.SoulCrystal.item');
-    })
-    .then((character) => {
-      console.log('Character', character.gear);
-      res.render('profile', { character });
+      res.render('profile', { character, comment, userId });
     })
     .catch((error) => next(error));
 });
