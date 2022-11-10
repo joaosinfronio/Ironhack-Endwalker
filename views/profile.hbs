@@ -4,6 +4,12 @@
   </div>
   <div class="ps-3 col col-sm-6 col-lg-8">
     <h2 class="ps-3 mb-1" style="font-family:Georgia, Times New Roman">Character details:</h2>
+    {{#unless isOwned}}
+      {{#if isFollowing}}
+        <form method="post" action="/profile/{{userId}}/unfollow"><button>Unfollow</button></form>
+      {{else}}<form method="post" action="/profile/{{userId}}/follow"><button>Follow</button></form>
+      {{/if}}
+    {{/unless}}
     <hr class="mt-1">
     <h4 style="font-family:Georgia, Times New Roman" class="p-1 shadow character-details border border-dark rounded ps-3"><i>Character name:</i></h4><h2 class="shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{character.name}}</h2>
     <h4 style="font-family:Georgia, Times New Roman" class="p-1 shadow character-details border border-dark rounded ps-3"><i>Current world server:</i></h4><h2 class="shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{character.server}}</h2>
@@ -45,7 +51,8 @@
     </div> 
   {{#if user}}
     <div class="ps-3 col-sm col-md-4 col-xl-4 h-25">
-     
+      {{#if isAbleToComment}}
+      
       <form class="shadow p-3 card form-control" method="POST" action="/comment/profile/{{userId}}">
         <textarea
         class="rounded mb-3"
@@ -53,11 +60,13 @@
           placeholder="Comment message here..."
           name="message"
         ></textarea>
+        <button class="btn btn-dark">Add Comment</button>
+      {{/if}}
+
           {{#if isOwn}}
             <a href="/profile/{{_id}}/edit" class="btn btn-primary">Edit</a>
           {{/if}}
 
-        <button class="btn btn-dark">Add Comment</button>
       </form>
     </div>
   {{/if}}

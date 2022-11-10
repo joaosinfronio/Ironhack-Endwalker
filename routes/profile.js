@@ -11,40 +11,48 @@ const Follow = require('./../models/follow');
 const Comment = require('./../models/comment');
 
 //GET User's profile
-router.get('/', routeGuard, (req, res, next) => {
-  let user;
-  let character;
-  let userId;
-  User.findById(req.user._id)
-    .then((userDocument) => {
-      user = userDocument;
-      userId = user._id;
-      return Character.findOne({
-        externalId: user.characterId
-      })
-        .populate('portrait')
-        .populate('gear.Body.item')
-        .populate('gear.Earrings.item')
-        .populate('gear.Bracelets.item')
-        .populate('gear.Feet.item')
-        .populate('gear.Hands.item')
-        .populate('gear.Head.item')
-        .populate('gear.Legs.item')
-        .populate('gear.MainHand.item')
-        .populate('gear.Necklace.item')
-        .populate('gear.Ring1.item')
-        .populate('gear.Ring2.item')
-        .populate('gear.SoulCrystal.item');
-    })
-    .then((characterDocument) => {
-      character = characterDocument;
-      return Comment.find({ profile: user._id }).populate('author');
-    })
-    .then((comment) => {
-      res.render('profile', { user, character, comment, userId });
-    })
-    .catch((error) => next(error));
-});
+// router.get('/', routeGuard, (req, res, next) => {
+//   let user;
+//   let character;
+//   let userId;
+//   let isAbleToComment;
+//   User.findById(req.user._id)
+//     .then((userDocument) => {
+//       user = userDocument;
+//       userId = user._id;
+//       isAbleToComment = true;
+//       return Character.findOne({
+//         externalId: user.characterId
+//       })
+//         .populate('portrait')
+//         .populate('gear.Body.item')
+//         .populate('gear.Earrings.item')
+//         .populate('gear.Bracelets.item')
+//         .populate('gear.Feet.item')
+//         .populate('gear.Hands.item')
+//         .populate('gear.Head.item')
+//         .populate('gear.Legs.item')
+//         .populate('gear.MainHand.item')
+//         .populate('gear.Necklace.item')
+//         .populate('gear.Ring1.item')
+//         .populate('gear.Ring2.item')
+//         .populate('gear.SoulCrystal.item');
+//     })
+//     .then((characterDocument) => {
+//       character = characterDocument;
+//       return Comment.find({ profile: user._id }).populate('author');
+//     })
+//     .then((comment) => {
+//       res.render('profile', {
+//         user,
+//         character,
+//         comment,
+//         userId,
+//         isAbleToComment
+//       });
+//     })
+//     .catch((error) => next(error));
+// });
 
 router.get('/edit', routeGuard, (req, res, next) => {
   res.render('profile-edit', { profile: req.user });
@@ -56,12 +64,10 @@ router.post('/edit', routeGuard, (req, res, next) => {
 
 //GET another users profile
 router.get('/:id', (req, res, next) => {
-  let user, character;
+  let user, character, isAbleToComment, isFollowing, isOwned;
   const { id } = req.params;
   const userId = id;
-
-  console.log('THIS IS USER ID', userId);
-  User.findById(userId)
+  User.findById(id)
     .then((userDocument) => {
       user = userDocument;
       return Character.findOne({
@@ -83,10 +89,29 @@ router.get('/:id', (req, res, next) => {
     })
     .then((characterDocument) => {
       character = characterDocument;
+      return Follow.findOne({ follower: req.user._id, followee: user._id });
+    })
+    .then((follow) => {
+      isFollowing = follow ? true : false;
+      return Follow.findOne({ follower: user._id, followee: req.user._id });
+    })
+    .then((follow) => {
+      isAbleToComment = follow && isFollowing ? true : false;
+      if (userId == req.user._id) {
+        isAbleToComment = true;
+        isOwned = true;
+      }
       return Comment.find({ profile: user._id }).populate('author');
     })
     .then((comment) => {
-      res.render('profile', { character, comment, userId });
+      res.render('profile', {
+        character,
+        comment,
+        userId,
+        isAbleToComment,
+        isFollowing,
+        isOwned
+      });
     })
     .catch((error) => next(error));
 });

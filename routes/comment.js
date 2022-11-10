@@ -52,8 +52,7 @@ router.post('/profile/:id', routeGuard, (req, res, next) => {
     author: req.user._id,
     profile: id
   })
-    .then((comment) => {
-      console.log(comment);
+    .then(() => {
       res.redirect('/profile/' + id);
     })
     .catch((error) => next(error));
