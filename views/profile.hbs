@@ -3,13 +3,19 @@
     <img class="border border-2 border-dark rounded shadow" src="{{character.portrait}}" alt="{{character.name}}">
   </div>
   <div class="ps-3 col col-sm-6 col-lg-8">
+    <div class="d-flex align-items-center">
+    <div>
     <h2 class="ps-3 mb-1" style="font-family:Georgia, Times New Roman">Character details:</h2>
+    </div>
+    <div class="ms-auto">
     {{#unless isOwned}}
       {{#if isFollowing}}
-        <form method="post" action="/profile/{{userId}}/unfollow"><button>Unfollow</button></form>
-      {{else}}<form method="post" action="/profile/{{userId}}/follow"><button>Follow</button></form>
+        <form class="mb-0" method="post" action="/profile/{{userId}}/unfollow"><button class="btn btn-dark">Unfollow</button></form>
+      {{else}}<form class="mb-0 align-items-center" method="post" action="/profile/{{userId}}/follow"><button class="mb-auto mt-auto btn btn-dark">Follow</button></form>
       {{/if}}
     {{/unless}}
+    </div>
+    </div>
     <hr class="mt-1">
     <h4 style="font-family:Georgia, Times New Roman" class="p-1 shadow character-details border border-dark rounded ps-3"><i>Character name:</i></h4><h2 class="shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{character.name}}</h2>
     <h4 style="font-family:Georgia, Times New Roman" class="p-1 shadow character-details border border-dark rounded ps-3"><i>Current world server:</i></h4><h2 class="shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{character.server}}</h2>

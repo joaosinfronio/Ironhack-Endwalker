@@ -19,6 +19,7 @@ const profileRouter = require('./routes/profile');
 const authenticationRouter = require('./routes/authentication');
 const itemRouter = require('./routes/item');
 const commentRouter = require('./routes/comment');
+const communityRouter = require('./routes/community');
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
@@ -65,6 +66,7 @@ app.use('/profile', profileRouter);
 app.use('/authentication', authenticationRouter);
 app.use('/item', itemRouter);
 app.use('/comment', commentRouter);
+app.use('/community', communityRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
