@@ -9,14 +9,22 @@ const searchForItems = require('./../lib/search-for-items');
 const Data = require('../models/data');
 const User = require('../models/user');
 
+let recentSearches = [];
+
 router.get('/', (req, res, next) => {
   res.render('home', {
-    title: 'Welcome to the No. 1 FFXIV community in IronHack!'
+    title: 'Welcome to the No. 1 FFXIV community in IronHack!',
+    recentSearches
   });
 });
 
 router.get('/search', (req, res, next) => {
   let searchTerm = req.query.search;
+  recentSearches.push(searchTerm);
+  if (recentSearches.length > 3) {
+    recentSearches.shift();
+  }
+
   User.find({ inGameName: searchTerm })
     .then((profile) => {
       if (profile.length > 0) {
@@ -25,7 +33,11 @@ router.get('/search', (req, res, next) => {
     })
     .then(() => {
       searchForItems(searchTerm, 0).then((dataResultDocuments) => {
-        res.render('search', { item: dataResultDocuments, searchTerm });
+        res.render('search', {
+          item: dataResultDocuments,
+          searchTerm,
+          recentSearches
+        });
       });
     })
     .catch((error) => next(error));
