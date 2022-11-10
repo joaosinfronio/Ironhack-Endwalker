@@ -33,12 +33,14 @@
       </svg></button>
   </form>
   <div>
-    {{#if recentSearches.length}}
-      Recent searches:
-      {{#each recentSearches}}
-        <a class="link-warning" href="/search?search={{this}}">{{this}}</a>
-        -
-      {{/each}}
+    {{#if user}}
+      {{#if recentSearches.length}}
+        Recent searches:
+        {{#each recentSearches}}
+          <a class="link-warning" href="/search?search={{this}}">{{this}}</a>
+          -
+        {{/each}}
+      {{/if}}
     {{/if}}
   </div>
 </div>
