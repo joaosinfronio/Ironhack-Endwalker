@@ -136,7 +136,7 @@ router.post('/delete', routeGuard, (req, res, next) => {
 });
 
 //GET another users profile
-router.get('/:id', (req, res, next) => {
+router.get('/:id', routeGuard, (req, res, next) => {
   let user,
     character,
     isAbleToComment,
