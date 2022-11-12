@@ -13,6 +13,8 @@ const gearSlot = {
 
 const characterSchema = new mongoose.Schema(
   {
+    level: String,
+    class: String,
     externalId: String,
     name: String,
     portrait: String,

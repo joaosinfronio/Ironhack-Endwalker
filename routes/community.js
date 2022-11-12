@@ -11,7 +11,12 @@ const Data = require('../models/data');
 // page where any user can make comments about anything
 
 router.get('/', routeGuard, (req, res, next) => {
-  res.render('community');
+  Comment.find({ item: { $exists: true } })
+    .populate('item')
+    .populate('author')
+    .then((comments) => {
+      res.render('community', { comments });
+    });
 });
 
 module.exports = router;

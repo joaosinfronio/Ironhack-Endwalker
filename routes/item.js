@@ -13,19 +13,27 @@ const Character = require('../models/character');
 //Get the detailed information about the Item, Recieves a external id
 router.get('/:id', (req, res, next) => {
   const { id } = req.params;
-  let data;
+  let data, isSaved;
 
   Data.findById(id)
     .then((dataDocument) => {
       data = dataDocument;
-      console.log(data);
+      return SavedData.findOne({
+        item: data._id,
+        user: req.user._id
+      });
+    })
+    .then((savedData) => {
+      if (savedData) {
+        isSaved = true;
+      }
       return Comment.find({ item: data._id }).populate('author');
     })
     .then((comments) => {
       const commentWithIsOwnedInfo = comments.map((comment) =>
         comment.getAddedInfo(req.user ? req.user._id : null)
       );
-      res.render('itemdetails', { data, commentWithIsOwnedInfo });
+      res.render('itemdetails', { data, commentWithIsOwnedInfo, isSaved });
     })
     .catch((error) => next(error));
 });

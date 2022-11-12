@@ -1,0 +1,24 @@
+{{#each comments}}
+  <div class="d-flex">
+    {{#if author}}
+      <a
+        class="comment-avatar border border-2 border-dark rounded shadow"
+        href="/profile/{{author._id}}"
+      >
+        <img src="{{author.avatar}}" alt="" />
+      </a>
+      <h3 class="ms-3 mb-0 mt-0 p-0">{{author.inGameName}}</h3>
+    {{else}}
+      <h3 class="mb-0 mt-0 p-0">Deleted User</h3>
+    {{/if}}
+  </div>
+  <div class="mt-3">
+    <a href="/item/{{item._id}}">
+      <h6 class=""><i>{{item.Name}}</i></h6>
+    </a>
+  </div>
+  <div class="mt-3">
+    <p class="">Message: {{message}}</p>
+  </div>
+  <hr />
+{{/each}}

@@ -9,6 +9,8 @@ const User = require('./../models/user');
 const Character = require('./../models/character');
 const Follow = require('./../models/follow');
 const Comment = require('./../models/comment');
+const SavedData = require('./../models/savedData');
+
 const countries = require('./../views/datasets/countries');
 const worldServers = require('./../views/datasets/worldservers');
 const lookUpCharacter = require('./../lib/load-character');
@@ -135,7 +137,12 @@ router.post('/delete', routeGuard, (req, res, next) => {
 
 //GET another users profile
 router.get('/:id', (req, res, next) => {
-  let user, character, isAbleToComment, isFollowing, isOwned;
+  let user,
+    character,
+    isAbleToComment,
+    isFollowing,
+    isOwned,
+    commentWithIsOwnedInfo;
   const { id } = req.params;
   const userId = id;
   User.findById(id)
@@ -175,16 +182,22 @@ router.get('/:id', (req, res, next) => {
       return Comment.find({ profile: user._id }).populate('author');
     })
     .then((comments) => {
-      const commentWithIsOwnedInfo = comments.map((comment) =>
+      commentWithIsOwnedInfo = comments.map((comment) =>
         comment.getAddedInfo(req.user ? req.user._id : null)
       );
+    })
+    .then(() => {
+      return SavedData.find({ user: req.user._id }).populate('item');
+    })
+    .then((savedData) => {
       res.render('profile', {
         character,
         commentWithIsOwnedInfo,
         userId,
         isAbleToComment,
         isFollowing,
-        isOwned
+        isOwned,
+        savedData
       });
     })
     .catch((error) => next(error));

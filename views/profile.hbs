@@ -28,6 +28,8 @@
     <hr class="mt-1">
     <h4 style="font-family:Georgia, Times New Roman" class="p-1 shadow character-details border border-dark rounded ps-3"><i>Character name:</i></h4><h2 class="shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{character.name}}</h2>
     <h4 style="font-family:Georgia, Times New Roman" class="p-1 shadow character-details border border-dark rounded ps-3"><i>Current world server:</i></h4><h2 class="shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{character.server}}</h2>
+    <h4 style="font-family:Georgia, Times New Roman" class="p-1 shadow character-details border border-dark rounded ps-3"><i>Level:</i></h4><h2 class="shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{character.level}}</h2>
+    <h4 style="font-family:Georgia, Times New Roman" class="p-1 shadow character-details border border-dark rounded ps-3"><i>Class:</i></h4><h2 class="shadow character-details border border-dark rounded ps-3" style="font-family:Georgia, Times New Roman">{{character.class}}</h2>
   </div>
 </div>
 <div>
@@ -39,7 +41,21 @@
         {{> gear}}
   {{/each}}
 </div>
+
+{{#if savedData}}
+<div>
+  <h1 class="mb-1" style="font-family:Georgia, Times New Roman">Saved Items:</h1>
+  <hr class="mt-1">
+</div>
+<div class="row row-cols-1 row-cols-md-6 mb-3 g-4">
+  {{#each savedData}}
+        {{> savedData}}
+  {{/each}}
+</div>
+{{/if}}
 <hr>
+
+
 <div>
   <h1 style="font-family:Georgia, Times New Roman">Posts:</h1>
 </div>
@@ -53,7 +69,9 @@
         {{#each commentWithIsOwnedInfo}}
           <div class="d-flex">
           {{#if author}}
-          <img class="comment-avatar border border-2 border-dark rounded shadow" src="{{author.avatar}}" alt="">
+          <a  class="comment-avatar border border-2 border-dark rounded shadow"href="/profile/{{author._id}}">
+            <img src="{{author.avatar}}" alt="">
+          </a>
           <h3 class="ms-3 mb-0 mt-0 p-0">{{author.inGameName}}</h3> 
             {{#if isOwnComment}}
             <form class="ms-auto mb-0" method="post" action="/comment/{{_id}}/delete"><button class="btn btn-outline-danger">Delete</button></form>

@@ -4,6 +4,13 @@
       class="shadow character-details border border-dark rounded-3 ps-3 mb-3"
       style="font-family:Georgia, Times New Roman"
     >{{data.Name}}</h2>
+
+    {{#if isSaved}}
+    <form class="mb-0" method="post" action="/item/{{data._id}}/unsave"><button class="btn btn-dark">Unsave Item</button></form>
+    {{else}}
+    <form class="mb-0" method="post" action="/item/{{data._id}}/save"><button class="btn btn-dark">Save Item</button></form>
+    {{/if}}
+
     <img
       class="border border-2 border-dark rounded-5 shadow"
       src="https://xivapi.com/{{data.IconHD}}"
@@ -63,7 +70,10 @@
         {{#each commentWithIsOwnedInfo}}
           <div class="d-flex">
           {{#if author}}
-          <img class="comment-avatar border border-2 border-dark rounded shadow" src="{{author.avatar}}" alt="">
+          <a  class="comment-avatar border border-2 border-dark rounded shadow" href="/profile/{{author._id}}">
+          <img  src="{{author.avatar}}" alt="">
+
+          </a>
           <h3 class="ms-3 mb-0 mt-0 p-0">{{author.inGameName}}</h3> 
             {{#if isOwnComment}}
             <form class="mb-0 ms-auto" method="post" action="/comment/{{_id}}/delete"><button class="btn btn-outline-danger">Delete</button></form>

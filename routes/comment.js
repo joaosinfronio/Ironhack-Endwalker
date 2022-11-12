@@ -81,7 +81,7 @@ router.post('/:id/delete', routeGuard, (req, res, next) => {
       if (comment.profile) {
         res.redirect('/profile/' + comment.profile);
       } else {
-        res.redirect('/profile/' + comment.item);
+        res.redirect('/item/' + comment.item);
       }
     })
     .catch((error) => next(error));
