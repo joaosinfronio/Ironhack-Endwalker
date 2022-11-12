@@ -66,7 +66,7 @@
           <img class="comment-avatar border border-2 border-dark rounded shadow" src="{{author.avatar}}" alt="">
           <h3 class="ms-3 mb-0 mt-0 p-0">{{author.inGameName}}</h3> 
             {{#if isOwnComment}}
-            <form class="mb-0" method="post" action="/comment/{{_id}}/delete"><button class="btn btn-dark">Delete</button></form>
+            <form class="mb-0 ms-auto" method="post" action="/comment/{{_id}}/delete"><button class="btn btn-outline-danger">Delete</button></form>
             {{/if}}
           {{else}}
           <h3 class="ms-3 mb-0 mt-0 p-0">Deleted User</h3>

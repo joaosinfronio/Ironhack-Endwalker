@@ -9,12 +9,18 @@
     </div>
     <div class="ms-auto">
     {{#if isOwned}}
-       <form class="mb-0" method="post" action="/profile/delete"><button class="btn btn-dark">Delete</button></form>
-       <form class="mb-0" method="get" action="/profile/edit"><button class="btn btn-dark">Edit</button></form>
+    <div class="d-flex">
+      <div>
+        <form class="mb-0" method="get" action="/profile/edit"><button class="shadow btn btn-light">Edit</button></form>
+      </div>
+      <div>
+        <form class="ms-2 mb-0" method="post" action="/profile/delete"><button class="shadow btn btn-outline-danger">Delete</button></form>
+      </div>
+    </div>
     {{else}}
       {{#if isFollowing}}
-        <form class="mb-0" method="post" action="/profile/{{userId}}/unfollow"><button class="btn btn-dark">Unfollow</button></form>
-      {{else}}<form class="mb-0 align-items-center" method="post" action="/profile/{{userId}}/follow"><button class="mb-auto mt-auto btn btn-dark">Follow</button></form>
+        <form class="mb-0" method="post" action="/profile/{{userId}}/unfollow"><button class="shadow btn btn-outline-light">Unfollow</button></form>
+      {{else}}<form class="mb-0 align-items-center" method="post" action="/profile/{{userId}}/follow"><button class="shadow mb-auto mt-auto btn btn-dark">Follow</button></form>
       {{/if}}
     {{/if}}
     </div>
@@ -50,7 +56,7 @@
           <img class="comment-avatar border border-2 border-dark rounded shadow" src="{{author.avatar}}" alt="">
           <h3 class="ms-3 mb-0 mt-0 p-0">{{author.inGameName}}</h3> 
             {{#if isOwnComment}}
-            <form class="mb-0" method="post" action="/comment/{{_id}}/delete"><button class="btn btn-dark">Delete</button></form>
+            <form class="ms-auto mb-0" method="post" action="/comment/{{_id}}/delete"><button class="btn btn-outline-danger">Delete</button></form>
             {{/if}}
           {{else}}
           <h3 class="ms-3 mb-0 mt-0 p-0">Deleted User</h3>
