@@ -18,10 +18,12 @@ router.get('/:id', (req, res, next) => {
   Data.findById(id)
     .then((dataDocument) => {
       data = dataDocument;
-      return SavedData.findOne({
-        item: data._id,
-        user: req.user._id
-      });
+      if (req.user) {
+        return SavedData.findOne({
+          item: data._id,
+          user: req.user._id
+        });
+      }
     })
     .then((savedData) => {
       if (savedData) {
