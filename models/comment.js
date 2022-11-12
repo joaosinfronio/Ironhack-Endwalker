@@ -29,13 +29,16 @@ const commentSchema = new mongoose.Schema(
 
 commentSchema.methods.getAddedInfo = function (userId) {
   const comment = this;
-  const isOwned = userId
-    ? String(userId) === String(comment.author._id)
-    : false;
-  return {
-    ...comment.toJSON(),
-    isOwned
-  };
+  if (comment.author !== null) {
+    const isOwnComment = userId
+      ? String(userId) === String(comment.author._id)
+      : false;
+    return {
+      ...comment.toJSON(),
+      isOwnComment
+    };
+  }
+  return comment;
 };
 
 const Comment = mongoose.model('Comment', commentSchema);

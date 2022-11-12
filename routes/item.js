@@ -21,8 +21,11 @@ router.get('/:id', (req, res, next) => {
       console.log(data);
       return Comment.find({ item: data._id }).populate('author');
     })
-    .then((comment) => {
-      res.render('itemdetails', { data, comment });
+    .then((comments) => {
+      const commentWithIsOwnedInfo = comments.map((comment) =>
+        comment.getAddedInfo(req.user ? req.user._id : null)
+      );
+      res.render('itemdetails', { data, commentWithIsOwnedInfo });
     })
     .catch((error) => next(error));
 });

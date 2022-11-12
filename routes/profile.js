@@ -9,6 +9,9 @@ const User = require('./../models/user');
 const Character = require('./../models/character');
 const Follow = require('./../models/follow');
 const Comment = require('./../models/comment');
+const countries = require('./../views/datasets/countries');
+const worldServers = require('./../views/datasets/worldservers');
+const lookUpCharacter = require('./../lib/load-character');
 
 //GET User's profile
 // router.get('/', routeGuard, (req, res, next) => {
@@ -55,11 +58,79 @@ const Comment = require('./../models/comment');
 // });
 
 router.get('/edit', routeGuard, (req, res, next) => {
-  res.render('profile-edit', { profile: req.user });
+  Character.findOne({ externalId: req.user.characterId })
+    .then((character) => {
+      res.render('profile-edit', {
+        profile: req.user,
+        character,
+        countries,
+        worldServers
+      });
+    })
+    .catch((error) => next(error));
 });
 
 router.post('/edit', routeGuard, (req, res, next) => {
-  res.render('profile-edit', { profile: req.user });
+  const { fullName, worldServer, nationality } = req.body;
+  let inGameName = req.body.inGameName;
+  let characterId;
+  let character, avatar, user;
+
+  lookUpCharacter(inGameName, worldServer)
+    .then((characterDocument) => {
+      character = characterDocument;
+      characterId = character.externalId;
+      avatar = character.avatar;
+    })
+    .then(() => {
+      return User.findByIdAndUpdate(
+        req.user._id,
+        {
+          fullName,
+          inGameName,
+          worldServer,
+          nationality,
+          characterId: characterId,
+          avatar: avatar
+        },
+        { new: true }
+      );
+    })
+    .then((userDocument) => {
+      user = userDocument;
+      req.session.userId = user._id;
+      return Character.findOne({ externalId: characterId })
+        .populate('portrait')
+        .populate('gear.Body.item')
+        .populate('gear.Earrings.item')
+        .populate('gear.Bracelets.item')
+        .populate('gear.Feet.item')
+        .populate('gear.Hands.item')
+        .populate('gear.Head.item')
+        .populate('gear.Legs.item')
+        .populate('gear.MainHand.item')
+        .populate('gear.Necklace.item')
+        .populate('gear.Ring1.item')
+        .populate('gear.Ring2.item')
+        .populate('gear.SoulCrystal.item');
+    })
+    .then((character) => {
+      res.redirect('/profile/' + req.user._id);
+    })
+    .catch((error) => {
+      console.log(error);
+      next(error);
+    });
+});
+
+router.post('/delete', routeGuard, (req, res, next) => {
+  User.findByIdAndDelete(req.user._id)
+    .then(() => {
+      res.redirect(`/`);
+    })
+    .catch((error) => {
+      next(error);
+    });
 });
 
 //GET another users profile
@@ -103,10 +174,13 @@ router.get('/:id', (req, res, next) => {
       }
       return Comment.find({ profile: user._id }).populate('author');
     })
-    .then((comment) => {
+    .then((comments) => {
+      const commentWithIsOwnedInfo = comments.map((comment) =>
+        comment.getAddedInfo(req.user ? req.user._id : null)
+      );
       res.render('profile', {
         character,
-        comment,
+        commentWithIsOwnedInfo,
         userId,
         isAbleToComment,
         isFollowing,

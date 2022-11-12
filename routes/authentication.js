@@ -22,7 +22,8 @@ router.post('/sign-up', (req, res, next) => {
   let characterId;
   let user;
   let character;
-  let isOwned = true;
+  let isOwned = true,
+    isAbleToComment = true;
 
   lookUpCharacter(inGameName, worldServer)
     .then((characterDocument) => {
@@ -62,7 +63,7 @@ router.post('/sign-up', (req, res, next) => {
         .populate('gear.SoulCrystal.item');
     })
     .then((character) => {
-      res.render('profile', { character, user, isOwned });
+      res.render('profile', { character, user, isOwned, isAbleToComment });
     })
     .catch((error) => {
       console.log(error);

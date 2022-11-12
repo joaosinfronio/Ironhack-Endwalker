@@ -76,9 +76,13 @@ router.post('/:id/edit', routeGuard, (req, res, next) => {
 router.post('/:id/delete', routeGuard, (req, res, next) => {
   const { id } = req.params;
 
-  Comment.findOneAndDelete(id)
-    .then(() => {
-      res.redirect('/item/' + id);
+  Comment.findByIdAndDelete(id)
+    .then((comment) => {
+      if (comment.profile) {
+        res.redirect('/profile/' + comment.profile);
+      } else {
+        res.redirect('/profile/' + comment.item);
+      }
     })
     .catch((error) => next(error));
 });
